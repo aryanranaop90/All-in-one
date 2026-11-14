@@ -1,0 +1,2226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OneLink – All Links in One Place</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --danger: #dc2626;
+      --danger-hover: #b91c1c;
+      --danger-light: #fef2f2;
+      --success: #059669;
+      --success-light: #ecfdf5;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 4px 10px -6px rgba(15, 23, 42, 0.04);
+      --transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .navbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navbar-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .brand-tag {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Main Layout */
+    .container {
+      max-width: 920px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+      flex: 1;
+    }
+
+    .public-container {
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 36px 20px 64px;
+      flex: 1;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text-main);
+      border-color: var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .btn-soft {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary-border);
+    }
+
+    .btn-soft:hover:not(:disabled) {
+      background: #dbeafe;
+    }
+
+    .btn-danger-ghost {
+      background: transparent;
+      color: var(--text-muted);
+    }
+
+    .btn-danger-ghost:hover:not(:disabled) {
+      background: var(--danger-light);
+      color: var(--danger);
+    }
+
+    .btn-icon {
+      padding: 7px;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition);
+    }
+
+    .btn-icon:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .btn-icon.danger:hover {
+      background: var(--danger-light);
+      color: var(--danger);
+    }
+
+    /* Dashboard Top Section */
+    .welcome-header {
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .welcome-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text-main);
+    }
+
+    .welcome-subtitle {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .sync-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    .sync-dot.saving {
+      background: #f59e0b;
+    }
+
+    .sync-dot.error {
+      background: var(--danger);
+    }
+
+    /* Profile Card & Stats */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 720px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.925rem;
+      color: var(--text-main);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 13px;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 74px;
+    }
+
+    .stats-panel {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-row:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .stat-label {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .stat-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* Shareable Link Bar */
+    .share-bar {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .share-url-box {
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 4px 6px 4px 12px;
+      flex: 1;
+      min-width: 240px;
+      gap: 8px;
+    }
+
+    .share-url-text {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    .share-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Groups Toolbar */
+    .section-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Group Card */
+    .groups-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .group-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition), border-color var(--transition), opacity var(--transition);
+    }
+
+    .group-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .group-card.dragging {
+      opacity: 0.5;
+      border: 1px dashed var(--primary);
+    }
+
+    .group-card.drag-over {
+      border-top: 3px solid var(--primary);
+    }
+
+    .group-header {
+      padding: 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .group-card.collapsed .group-header {
+      border-bottom: none;
+    }
+
+    .group-header-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .drag-handle {
+      cursor: grab;
+      color: #94a3b8;
+      padding: 4px 2px;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+
+    .group-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .group-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .group-title {
+      font-size: 1.025rem;
+      font-weight: 700;
+      color: var(--text-main);
+      word-break: break-word;
+    }
+
+    .group-count-pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .group-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      word-break: break-word;
+    }
+
+    .group-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .group-body {
+      padding: 16px 18px;
+    }
+
+    .group-card.collapsed .group-body {
+      display: none;
+    }
+
+    /* Links inside Group */
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .link-item:hover {
+      border-color: #cbd5e1;
+      background: #f1f5f9;
+    }
+
+    .link-item.dragging {
+      opacity: 0.45;
+      border: 1px dashed var(--primary);
+    }
+
+    .link-item.drag-over {
+      border-top: 2px solid var(--primary);
+    }
+
+    .link-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-icon-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+      color: var(--primary);
+    }
+
+    .link-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-title {
+      font-size: 0.925rem;
+      font-weight: 600;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .link-url {
+      font-size: 0.78rem;
+      color: var(--primary);
+      text-decoration: none;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .link-url:hover {
+      text-decoration: underline;
+    }
+
+    .link-subdesc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .link-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 36px 20px;
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      color: var(--text-muted);
+    }
+
+    .empty-state-small {
+      text-align: center;
+      padding: 18px 14px;
+      border: 1px dashed #cbd5e1;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* Public Page Styles */
+    .public-profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: 32px 24px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .public-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.65rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .public-title {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text-main);
+      word-break: break-word;
+    }
+
+    .public-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 8px auto 0;
+      word-break: break-word;
+    }
+
+    .public-share-row {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .public-group {
+      margin-bottom: 26px;
+    }
+
+    .public-group-header {
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+
+    .public-group-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .public-group-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .public-links-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .public-link-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 15px 18px;
+      text-decoration: none;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .public-link-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .public-link-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .public-link-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .public-link-text {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .public-link-title {
+      font-size: 0.975rem;
+      font-weight: 600;
+      color: var(--text-main);
+      word-break: break-word;
+    }
+
+    .public-link-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      word-break: break-word;
+    }
+
+    .public-link-arrow {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform var(--transition), color var(--transition);
+    }
+
+    .public-link-btn:hover .public-link-arrow {
+      color: var(--primary);
+      transform: translateX(2px);
+    }
+
+    .public-footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+
+    .public-footer a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .public-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 460px;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-footer {
+      padding: 14px 20px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .input-error {
+      font-size: 0.78rem;
+      color: var(--danger);
+      margin-top: 5px;
+      display: none;
+    }
+
+    .input-error.visible {
+      display: block;
+    }
+
+    /* Alerts & Loaders */
+    .alert-banner {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      font-size: 0.875rem;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .alert-banner.error {
+      display: flex;
+      background: var(--danger-light);
+      border: 1px solid #fecaca;
+      color: var(--danger);
+    }
+
+    .loader-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      gap: 14px;
+    }
+
+    .spinner {
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--primary-border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast.error {
+      background: var(--danger);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 540px) {
+      .navbar-inner {
+        padding: 12px 14px;
+      }
+      .brand-tag {
+        display: none;
+      }
+      .group-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .group-actions {
+        justify-content: flex-end;
+        border-top: 1px solid var(--border);
+        padding-top: 8px;
+        margin-top: 4px;
+      }
+      .link-item {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .link-actions {
+        justify-content: flex-end;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="./" class="brand" id="brandLink">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">OneLink</span>
+          <span class="brand-tag">All Links in One Place</span>
+        </div>
+      </a>
+
+      <div class="nav-actions" id="dashboardNavActions">
+        <button type="button" class="btn btn-secondary" id="navPreviewBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+          Preview
+        </button>
+        <button type="button" class="btn btn-primary" id="navShareBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+          Share Link
+        </button>
+      </div>
+
+      <div class="nav-actions hidden" id="publicNavActions">
+        <a href="./" class="btn btn-soft" id="publicCreateOwnBtn">Create Your OneLink</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Loading Screen -->
+  <div id="loadingView" class="loader-screen">
+    <div class="spinner"></div>
+    <p id="loadingText">Loading your OneLink workspace...</p>
+  </div>
+
+  <!-- Dashboard View (Owner Mode) -->
+  <main id="dashboardView" class="container hidden">
+    <div id="firebaseErrorBanner" class="alert-banner error" role="alert">
+      <span id="firebaseErrorText">Unable to connect to cloud storage.</span>
+      <button type="button" class="btn btn-secondary" id="retrySyncBtn">Retry</button>
+    </div>
+
+    <div class="welcome-header">
+      <div>
+        <h1 class="welcome-title">Welcome to OneLink</h1>
+        <p class="welcome-subtitle">Organize your links into clean groups and share them with a single permanent URL.</p>
+      </div>
+      <div class="sync-badge" id="syncBadge">
+        <span class="sync-dot" id="syncDot"></span>
+        <span id="syncStatusText">Saved to cloud</span>
+      </div>
+    </div>
+
+    <!-- Profile Details & Shareable Link -->
+    <section class="card" aria-label="Profile Settings">
+      <div class="profile-grid">
+        <div>
+          <div class="form-group">
+            <label class="form-label" for="profileTitleInput">Profile Title</label>
+            <input type="text" id="profileTitleInput" class="form-input" placeholder="e.g., Alex Morgan or My Personal Links" maxlength="100" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="profileDescInput">Profile Description</label>
+            <textarea id="profileDescInput" class="form-textarea" placeholder="Add a short bio, tagline, or description for your visitors..." maxlength="300"></textarea>
+          </div>
+        </div>
+
+        <div class="stats-panel">
+          <div class="stat-row">
+            <span class="stat-label">Total Groups</span>
+            <span class="stat-value" id="totalGroupsCount">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Total Links</span>
+            <span class="stat-value" id="totalLinksCount">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="share-bar">
+        <div class="share-url-box">
+          <span class="share-url-text" id="shareableUrlDisplay">Generating link...</span>
+          <button type="button" class="btn btn-secondary" id="copyShareUrlBtn" style="padding: 6px 12px; font-size: 0.8rem;">Copy</button>
+        </div>
+        <div class="share-actions">
+          <button type="button" class="btn btn-soft" id="generateShareBtn">Generate Shareable Link</button>
+          <button type="button" class="btn btn-secondary" id="previewBtn">Preview Page</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Groups Management -->
+    <section aria-label="Link Groups">
+      <div class="section-toolbar">
+        <h2 class="section-title">Your Link Groups</h2>
+        <button type="button" class="btn btn-primary" id="addGroupBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add New Group
+        </button>
+      </div>
+
+      <div id="groupsContainer" class="groups-list"></div>
+    </section>
+  </main>
+
+  <!-- Public View (Visitor Mode) -->
+  <main id="publicView" class="public-container hidden">
+    <div id="publicErrorState" class="empty-state hidden">
+      <h2 style="font-size: 1.2rem; color: var(--text-main); margin-bottom: 6px;">Collection Not Found</h2>
+      <p style="margin-bottom: 18px;">This OneLink URL does not exist or has no published content yet.</p>
+      <a href="./" class="btn btn-primary">Create a New OneLink Page</a>
+    </div>
+
+    <div id="publicContent">
+      <section class="public-profile-card">
+        <div class="public-avatar" id="publicAvatar">O</div>
+        <h1 class="public-title" id="publicTitle"></h1>
+        <p class="public-desc" id="publicDesc"></p>
+        <div class="public-share-row">
+          <button type="button" class="btn btn-primary" id="publicShareBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            Share
+          </button>
+          <button type="button" class="btn btn-secondary" id="publicCopyBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Copy Link
+          </button>
+        </div>
+      </section>
+
+      <section id="publicGroupsContainer"></section>
+
+      <footer class="public-footer">
+        Powered by <a href="./">OneLink</a> – All Links in One Place
+      </footer>
+    </div>
+  </main>
+
+  <!-- Group Modal (Add / Edit) -->
+  <div class="modal-backdrop" id="groupModal" role="dialog" aria-modal="true" aria-labelledby="groupModalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="groupModalTitle">Add New Group</h3>
+        <button type="button" class="btn-icon" data-close-modal="groupModal" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="groupForm">
+        <div class="modal-body">
+          <input type="hidden" id="groupIdInput" />
+          <div class="form-group">
+            <label class="form-label" for="groupTitleInput">Group Title *</label>
+            <input type="text" id="groupTitleInput" class="form-input" placeholder="e.g., My Social Media" maxlength="80" required />
+            <div class="input-error" id="groupTitleError">Please enter a group title.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="groupDescInput">Group Description (Optional)</label>
+            <textarea id="groupDescInput" class="form-textarea" placeholder="e.g., Connect with me across social platforms" maxlength="200"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="groupModal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveGroupSubmitBtn">Save Group</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Link Modal (Add / Edit) -->
+  <div class="modal-backdrop" id="linkModal" role="dialog" aria-modal="true" aria-labelledby="linkModalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="linkModalTitle">Add Link</h3>
+        <button type="button" class="btn-icon" data-close-modal="linkModal" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <form id="linkForm" novalidate>
+        <div class="modal-body">
+          <input type="hidden" id="linkGroupIdInput" />
+          <input type="hidden" id="linkIdInput" />
+          <div class="form-group">
+            <label class="form-label" for="linkTitleInput">Link Title *</label>
+            <input type="text" id="linkTitleInput" class="form-input" placeholder="e.g., YouTube Channel" maxlength="80" required />
+            <div class="input-error" id="linkTitleError">Please enter a link title.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="linkUrlInput">URL (HTTP or HTTPS) *</label>
+            <input type="url" id="linkUrlInput" class="form-input" placeholder="https://youtube.com/@yourhandle" required />
+            <div class="input-error" id="linkUrlError">Please enter a valid http:// or https:// URL.</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="linkIconInput">Emoji / Icon (Optional)</label>
+            <input type="text" id="linkIconInput" class="form-input" placeholder="e.g., 🎥 or 🌐 or 🚀" maxlength="8" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="linkDescInput">Short Description (Optional)</label>
+            <input type="text" id="linkDescInput" class="form-input" placeholder="e.g., Weekly tutorials and product reviews" maxlength="140" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal="linkModal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveLinkSubmitBtn">Save Link</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Firebase Modular SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import {
+      getDatabase,
+      ref,
+      set,
+      get,
+      update
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAAfkCcHXUQnI0csIAy0AKsFy8qOTB9BGk",
+      authDomain: "arys-cd31c.firebaseapp.com",
+      databaseURL: "https://arys-cd31c-default-rtdb.firebaseio.com",
+      projectId: "arys-cd31c",
+      storageBucket: "arys-cd31c.firebasestorage.app",
+      messagingSenderId: "177472296808",
+      appId: "1:177472296808:web:b62158df89ff0fdbb568dd"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const STORAGE_KEY = "onelink_collection_id";
+    const COLLAPSED_KEY = "onelink_collapsed_groups";
+
+    let collectionId = null;
+    let isSaving = false;
+    let pendingSave = false;
+    let profileSaveTimer = null;
+    let collapsedGroups = new Set(JSON.parse(localStorage.getItem(COLLAPSED_KEY) || "[]"));
+
+    // Application state (normalized arrays internally for order, serialized to Firebase structure on save)
+    let state = {
+      title: "",
+      description: "",
+      groups: [],
+      updatedAt: Date.now()
+    };
+
+    // Drag & Drop state
+    let draggedGroupIndex = null;
+    let draggedLinkMeta = null; // { groupIndex, linkIndex }
+
+    // DOM Elements
+    const loadingView = document.getElementById("loadingView");
+    const loadingText = document.getElementById("loadingText");
+    const dashboardView = document.getElementById("dashboardView");
+    const publicView = document.getElementById("publicView");
+    const dashboardNavActions = document.getElementById("dashboardNavActions");
+    const publicNavActions = document.getElementById("publicNavActions");
+
+    const firebaseErrorBanner = document.getElementById("firebaseErrorBanner");
+    const firebaseErrorText = document.getElementById("firebaseErrorText");
+    const syncDot = document.getElementById("syncDot");
+    const syncStatusText = document.getElementById("syncStatusText");
+
+    const profileTitleInput = document.getElementById("profileTitleInput");
+    const profileDescInput = document.getElementById("profileDescInput");
+    const totalGroupsCount = document.getElementById("totalGroupsCount");
+    const totalLinksCount = document.getElementById("totalLinksCount");
+    const shareableUrlDisplay = document.getElementById("shareableUrlDisplay");
+    const groupsContainer = document.getElementById("groupsContainer");
+
+    // Utility: Generate unique ID
+    function generateUniqueId(prefix = "") {
+      const randomPart = Math.random().toString(36).substring(2, 8);
+      const timePart = Date.now().toString(36).slice(-4);
+      return prefix ? `${prefix}${timePart}${randomPart}` : `${timePart}${randomPart}`;
+    }
+
+    // Utility: Build Shareable URL
+    function getShareableUrl(id) {
+      const url = new URL(window.location.href);
+      url.search = `?id=${encodeURIComponent(id)}`;
+      url.hash = "";
+      return url.toString();
+    }
+
+    // Utility: Escape HTML to prevent XSS
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Utility: Validate HTTP/HTTPS URL
+    function validateAndNormalizeUrl(rawUrl) {
+      const trimmed = rawUrl.trim();
+      if (!trimmed) return null;
+      if (!/^https?:\/\//i.test(trimmed)) {
+        return null;
+      }
+      try {
+        const parsed = new URL(trimmed);
+        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+          return null;
+        }
+        if (!parsed.hostname || !parsed.hostname.includes(".")) {
+          // Allow localhost for testing if needed, otherwise require dot
+          if (parsed.hostname !== "localhost") return null;
+        }
+        return parsed.href;
+      } catch {
+        return null;
+      }
+    }
+
+    // Utility: Toast Notification
+    function showToast(message, isError = false) {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = `toast ${isError ? "error" : ""}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 220);
+      }, 2800);
+    }
+
+    // Utility: Copy to Clipboard
+    async function copyToClipboard(text, successMsg = "Copied to clipboard") {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast(successMsg);
+      } catch {
+        const temp = document.createElement("textarea");
+        temp.value = text;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+        showToast(successMsg);
+      }
+    }
+
+    // Sync Indicator Helper
+    function setSyncStatus(status, message) {
+      syncDot.className = "sync-dot";
+      if (status === "saving") {
+        syncDot.classList.add("saving");
+      } else if (status === "error") {
+        syncDot.classList.add("error");
+      }
+      syncStatusText.textContent = message;
+    }
+
+    // Convert Internal State -> Firebase Database Structure
+    function serializeStateForFirebase() {
+      const groupsObj = {};
+      state.groups.forEach((grp, gIdx) => {
+        const linksObj = {};
+        (grp.links || []).forEach((lnk, lIdx) => {
+          const linkKey = lnk.id || `link_${lIdx + 1}`;
+          linksObj[linkKey] = {
+            title: lnk.title,
+            url: lnk.url,
+            order: lIdx
+          };
+          if (lnk.description) linksObj[linkKey].description = lnk.description;
+          if (lnk.icon) linksObj[linkKey].icon = lnk.icon;
+        });
+
+        const groupKey = grp.id || `group_${gIdx + 1}`;
+        groupsObj[groupKey] = {
+          title: grp.title,
+          description: grp.description || "",
+          order: gIdx,
+          links: linksObj
+        };
+      });
+
+      return {
+        title: state.title || "",
+        description: state.description || "",
+        groups: groupsObj,
+        updatedAt: Date.now()
+      };
+    }
+
+    // Convert Firebase Snapshot -> Internal State
+    function deserializeFirebaseData(data) {
+      if (!data) {
+        return {
+          title: "",
+          description: "",
+          groups: [],
+          updatedAt: Date.now()
+        };
+      }
+
+      const rawGroups = data.groups || {};
+      const parsedGroups = Object.entries(rawGroups)
+        .map(([gKey, gVal], idx) => {
+          const rawLinks = gVal.links || {};
+          const parsedLinks = Object.entries(rawLinks)
+            .map(([lKey, lVal], lIdx) => ({
+              id: lKey,
+              title: lVal.title || "Untitled Link",
+              url: lVal.url || "",
+              description: lVal.description || "",
+              icon: lVal.icon || "",
+              order: typeof lVal.order === "number" ? lVal.order : lIdx
+            }))
+            .sort((a, b) => a.order - b.order);
+
+          return {
+            id: gKey,
+            title: gVal.title || "Untitled Group",
+            description: gVal.description || "",
+            order: typeof gVal.order === "number" ? gVal.order : idx,
+            links: parsedLinks
+          };
+        })
+        .sort((a, b) => a.order - b.order);
+
+      return {
+        title: data.title || "",
+        description: data.description || "",
+        groups: parsedGroups,
+        updatedAt: data.updatedAt || Date.now()
+      };
+    }
+
+    // Persist State to Firebase Realtime Database
+    async function saveToFirebase() {
+      if (!collectionId) return;
+
+      if (isSaving) {
+        pendingSave = true;
+        return;
+      }
+
+      isSaving = true;
+      setSyncStatus("saving", "Saving changes...");
+      firebaseErrorBanner.classList.remove("error");
+
+      try {
+        const payload = serializeStateForFirebase();
+        const collectionRef = ref(db, `collections/${collectionId}`);
+        await set(collectionRef, payload);
+        setSyncStatus("saved", "Saved to cloud");
+      } catch (err) {
+        console.error("Firebase save error:", err);
+        setSyncStatus("error", "Sync failed");
+        firebaseErrorText.textContent = `Cloud save error: ${err.message || "Check your internet connection or Firebase rules."}`;
+        firebaseErrorBanner.classList.add("error");
+      } finally {
+        isSaving = false;
+        if (pendingSave) {
+          pendingSave = false;
+          saveToFirebase();
+        }
+      }
+    }
+
+    // Initialize Owner Dashboard
+    async function initDashboard() {
+      loadingText.textContent = "Loading your OneLink workspace...";
+      let storedId = localStorage.getItem(STORAGE_KEY);
+
+      if (!storedId) {
+        storedId = generateUniqueId("ol_");
+        localStorage.setItem(STORAGE_KEY, storedId);
+      }
+
+      collectionId = storedId;
+      shareableUrlDisplay.textContent = getShareableUrl(collectionId);
+
+      try {
+        const collectionRef = ref(db, `collections/${collectionId}`);
+        const snapshot = await get(collectionRef);
+
+        if (snapshot.exists()) {
+          state = deserializeFirebaseData(snapshot.val());
+        } else {
+          // Initialize a starter collection structure in Firebase so the URL works immediately
+          state = {
+            title: "",
+            description: "",
+            groups: [],
+            updatedAt: Date.now()
+          };
+          await set(collectionRef, serializeStateForFirebase());
+        }
+
+        profileTitleInput.value = state.title;
+        profileDescInput.value = state.description;
+        renderDashboard();
+      } catch (err) {
+        console.error("Firebase load error:", err);
+        firebaseErrorText.textContent = `Could not load collection from Firebase: ${err.message}`;
+        firebaseErrorBanner.classList.add("error");
+        setSyncStatus("error", "Offline / Error");
+        renderDashboard();
+      } finally {
+        loadingView.classList.add("hidden");
+        dashboardView.classList.remove("hidden");
+      }
+    }
+
+    // Render Dashboard Groups & Counters
+    function renderDashboard() {
+      const totalGroups = state.groups.length;
+      const totalLinks = state.groups.reduce((acc, grp) => acc + (grp.links ? grp.links.length : 0), 0);
+
+      totalGroupsCount.textContent = totalGroups;
+      totalLinksCount.textContent = totalLinks;
+
+      if (totalGroups === 0) {
+        groupsContainer.innerHTML = `
+          <div class="empty-state">
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 4px;">No link groups yet</p>
+            <p style="font-size: 0.875rem; margin-bottom: 16px;">Create your first group (e.g., Social Media, Websites, or Resources) to start adding links.</p>
+            <button type="button" class="btn btn-primary" id="emptyAddGroupBtn">+ Create First Group</button>
+          </div>
+        `;
+        document.getElementById("emptyAddGroupBtn").addEventListener("click", () => openGroupModal());
+        return;
+      }
+
+      groupsContainer.innerHTML = "";
+
+      state.groups.forEach((group, groupIndex) => {
+        const isCollapsed = collapsedGroups.has(group.id);
+        const linkCount = group.links ? group.links.length : 0;
+
+        const groupCard = document.createElement("div");
+        groupCard.className = `group-card ${isCollapsed ? "collapsed" : ""}`;
+        groupCard.setAttribute("draggable", "true");
+        groupCard.dataset.groupIndex = groupIndex;
+
+        // Group Drag & Drop Events
+        groupCard.addEventListener("dragstart", (e) => {
+          if (e.target !== groupCard) return;
+          draggedGroupIndex = groupIndex;
+          groupCard.classList.add("dragging");
+          e.dataTransfer.effectAllowed = "move";
+        });
+
+        groupCard.addEventListener("dragend", () => {
+          draggedGroupIndex = null;
+          groupCard.classList.remove("dragging");
+          document.querySelectorAll(".group-card").forEach(el => el.classList.remove("drag-over"));
+        });
+
+        groupCard.addEventListener("dragover", (e) => {
+          if (draggedGroupIndex === null || draggedGroupIndex === groupIndex) return;
+          e.preventDefault();
+          groupCard.classList.add("drag-over");
+        });
+
+        groupCard.addEventListener("dragleave", () => {
+          groupCard.classList.remove("drag-over");
+        });
+
+        groupCard.addEventListener("drop", (e) => {
+          if (draggedGroupIndex === null || draggedGroupIndex === groupIndex) return;
+          e.preventDefault();
+          groupCard.classList.remove("drag-over");
+          const moved = state.groups.splice(draggedGroupIndex, 1)[0];
+          state.groups.splice(groupIndex, 0, moved);
+          draggedGroupIndex = null;
+          renderDashboard();
+          saveToFirebase();
+        });
+
+        groupCard.innerHTML = `
+          <div class="group-header">
+            <div class="group-header-left">
+              <div class="drag-handle" title="Drag to reorder group" aria-label="Drag to reorder group">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="19" r="1"></circle>
+                  <circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="19" r="1"></circle>
+                </svg>
+              </div>
+              <div class="group-info">
+                <div class="group-title-row">
+                  <span class="group-title">${escapeHtml(group.title)}</span>
+                  <span class="group-count-pill">${linkCount} ${linkCount === 1 ? "link" : "links"}</span>
+                </div>
+                ${group.description ? `<p class="group-desc">${escapeHtml(group.description)}</p>` : ""}
+              </div>
+            </div>
+
+            <div class="group-actions">
+              <button type="button" class="btn-icon" data-action="toggle" title="${isCollapsed ? "Expand group" : "Collapse group"}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(${isCollapsed ? "-90deg" : "0deg"}); transition: transform 0.15s;">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <button type="button" class="btn-icon" data-action="edit-group" title="Edit group">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              </button>
+              <button type="button" class="btn-icon" data-action="duplicate-group" title="Duplicate group">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+              <button type="button" class="btn-icon danger" data-action="delete-group" title="Delete group">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="group-body">
+            <div class="links-list" data-links-container="${group.id}"></div>
+            <button type="button" class="btn btn-soft" data-action="add-link" style="width: 100%;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Add Link to ${escapeHtml(group.title)}
+            </button>
+          </div>
+        `;
+
+        // Group Action Handlers
+        groupCard.querySelector('[data-action="toggle"]').addEventListener("click", () => {
+          if (collapsedGroups.has(group.id)) {
+            collapsedGroups.delete(group.id);
+          } else {
+            collapsedGroups.add(group.id);
+          }
+          localStorage.setItem(COLLAPSED_KEY, JSON.stringify([...collapsedGroups]));
+          renderDashboard();
+        });
+
+        groupCard.querySelector('[data-action="edit-group"]').addEventListener("click", () => {
+          openGroupModal(group);
+        });
+
+        groupCard.querySelector('[data-action="duplicate-group"]').addEventListener("click", () => {
+          const duplicatedLinks = (group.links || []).map((l, idx) => ({
+            ...l,
+            id: generateUniqueId(`link_${idx + 1}_`)
+          }));
+          const duplicatedGroup = {
+            id: generateUniqueId("group_"),
+            title: `${group.title} (Copy)`,
+            description: group.description || "",
+            links: duplicatedLinks
+          };
+          state.groups.splice(groupIndex + 1, 0, duplicatedGroup);
+          renderDashboard();
+          saveToFirebase();
+          showToast("Group duplicated");
+        });
+
+        groupCard.querySelector('[data-action="delete-group"]').addEventListener("click", () => {
+          if (confirm(`Delete "${group.title}" and all its links?`)) {
+            state.groups.splice(groupIndex, 1);
+            collapsedGroups.delete(group.id);
+            renderDashboard();
+            saveToFirebase();
+            showToast("Group deleted");
+          }
+        });
+
+        groupCard.querySelector('[data-action="add-link"]').addEventListener("click", () => {
+          openLinkModal(group.id);
+        });
+
+        // Render Links inside Group
+        const linksListEl = groupCard.querySelector(`[data-links-container="${group.id}"]`);
+        if (!group.links || group.links.length === 0) {
+          linksListEl.innerHTML = `<div class="empty-state-small">No links in this group yet. Click below to add your first URL.</div>`;
+        } else {
+          group.links.forEach((link, linkIndex) => {
+            const linkEl = document.createElement("div");
+            linkEl.className = "link-item";
+            linkEl.setAttribute("draggable", "true");
+
+            // Link Drag & Drop Events (within same group)
+            linkEl.addEventListener("dragstart", (e) => {
+              e.stopPropagation();
+              draggedLinkMeta = { groupIndex, linkIndex };
+              linkEl.classList.add("dragging");
+              e.dataTransfer.effectAllowed = "move";
+            });
+
+            linkEl.addEventListener("dragend", (e) => {
+              e.stopPropagation();
+              draggedLinkMeta = null;
+              linkEl.classList.remove("dragging");
+              linksListEl.querySelectorAll(".link-item").forEach(el => el.classList.remove("drag-over"));
+            });
+
+            linkEl.addEventListener("dragover", (e) => {
+              if (!draggedLinkMeta || draggedLinkMeta.groupIndex !== groupIndex || draggedLinkMeta.linkIndex === linkIndex) {
+                return;
+              }
+              e.preventDefault();
+              e.stopPropagation();
+              linkEl.classList.add("drag-over");
+            });
+
+            linkEl.addEventListener("dragleave", (e) => {
+              e.stopPropagation();
+              linkEl.classList.remove("drag-over");
+            });
+
+            linkEl.addEventListener("drop", (e) => {
+              if (!draggedLinkMeta || draggedLinkMeta.groupIndex !== groupIndex || draggedLinkMeta.linkIndex === linkIndex) {
+                return;
+              }
+              e.preventDefault();
+              e.stopPropagation();
+              linkEl.classList.remove("drag-over");
+
+              const movedLink = state.groups[groupIndex].links.splice(draggedLinkMeta.linkIndex, 1)[0];
+              state.groups[groupIndex].links.splice(linkIndex, 0, movedLink);
+              draggedLinkMeta = null;
+              renderDashboard();
+              saveToFirebase();
+            });
+
+            const iconHtml = link.icon
+              ? escapeHtml(link.icon)
+              : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`;
+
+            linkEl.innerHTML = `
+              <div class="link-item-left">
+                <div class="drag-handle" title="Drag to reorder link">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="19" r="1"></circle>
+                    <circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="19" r="1"></circle>
+                  </svg>
+                </div>
+                <div class="link-icon-badge">${iconHtml}</div>
+                <div class="link-details">
+                  <div class="link-title">${escapeHtml(link.title)}</div>
+                  <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="link-url">${escapeHtml(link.url)}</a>
+                  ${link.description ? `<div class="link-subdesc">${escapeHtml(link.description)}</div>` : ""}
+                </div>
+              </div>
+              <div class="link-actions">
+                <button type="button" class="btn-icon" data-link-action="copy" title="Copy URL">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+                <button type="button" class="btn-icon" data-link-action="edit" title="Edit link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+                <button type="button" class="btn-icon danger" data-link-action="delete" title="Delete link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+            `;
+
+            linkEl.querySelector('[data-link-action="copy"]').addEventListener("click", () => {
+              copyToClipboard(link.url, "Link URL copied");
+            });
+
+            linkEl.querySelector('[data-link-action="edit"]').addEventListener("click", () => {
+              openLinkModal(group.id, link);
+            });
+
+            linkEl.querySelector('[data-link-action="delete"]').addEventListener("click", () => {
+              state.groups[groupIndex].links.splice(linkIndex, 1);
+              renderDashboard();
+              saveToFirebase();
+              showToast("Link deleted");
+            });
+
+            linksListEl.appendChild(linkEl);
+          });
+        }
+
+        groupsContainer.appendChild(groupCard);
+      });
+    }
+
+    // Group Modal Logic
+    const groupModal = document.getElementById("groupModal");
+    const groupForm = document.getElementById("groupForm");
+    const groupIdInput = document.getElementById("groupIdInput");
+    const groupTitleInput = document.getElementById("groupTitleInput");
+    const groupDescInput = document.getElementById("groupDescInput");
+    const groupTitleError = document.getElementById("groupTitleError");
+
+    function openGroupModal(group = null) {
+      groupTitleError.classList.remove("visible");
+      if (group) {
+        document.getElementById("groupModalTitle").textContent = "Edit Group";
+        groupIdInput.value = group.id;
+        groupTitleInput.value = group.title;
+        groupDescInput.value = group.description || "";
+      } else {
+        document.getElementById("groupModalTitle").textContent = "Add New Group";
+        groupIdInput.value = "";
+        groupTitleInput.value = "";
+        groupDescInput.value = "";
+      }
+      groupModal.classList.add("open");
+      setTimeout(() => groupTitleInput.focus(), 40);
+    }
+
+    groupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const title = groupTitleInput.value.trim();
+      const description = groupDescInput.value.trim();
+
+      if (!title) {
+        groupTitleError.classList.add("visible");
+        groupTitleInput.focus();
+        return;
+      }
+
+      const existingId = groupIdInput.value;
+      if (existingId) {
+        const target = state.groups.find(g => g.id === existingId);
+        if (target) {
+          target.title = title;
+          target.description = description;
+        }
+        showToast("Group updated");
+      } else {
+        state.groups.push({
+          id: generateUniqueId("group_"),
+          title,
+          description,
+          links: []
+        });
+        showToast("Group added");
+      }
+
+      groupModal.classList.remove("open");
+      renderDashboard();
+      saveToFirebase();
+    });
+
+    // Link Modal Logic
+    const linkModal = document.getElementById("linkModal");
+    const linkForm = document.getElementById("linkForm");
+    const linkGroupIdInput = document.getElementById("linkGroupIdInput");
+    const linkIdInput = document.getElementById("linkIdInput");
+    const linkTitleInput = document.getElementById("linkTitleInput");
+    const linkUrlInput = document.getElementById("linkUrlInput");
+    const linkIconInput = document.getElementById("linkIconInput");
+    const linkDescInput = document.getElementById("linkDescInput");
+    const linkTitleError = document.getElementById("linkTitleError");
+    const linkUrlError = document.getElementById("linkUrlError");
+
+    function openLinkModal(groupId, link = null) {
+      linkTitleError.classList.remove("visible");
+      linkUrlError.classList.remove("visible");
+      linkGroupIdInput.value = groupId;
+
+      if (link) {
+        document.getElementById("linkModalTitle").textContent = "Edit Link";
+        linkIdInput.value = link.id;
+        linkTitleInput.value = link.title;
+        linkUrlInput.value = link.url;
+        linkIconInput.value = link.icon || "";
+        linkDescInput.value = link.description || "";
+      } else {
+        document.getElementById("linkModalTitle").textContent = "Add Link";
+        linkIdInput.value = "";
+        linkTitleInput.value = "";
+        linkUrlInput.value = "";
+        linkIconInput.value = "";
+        linkDescInput.value = "";
+      }
+
+      linkModal.classList.add("open");
+      setTimeout(() => linkTitleInput.focus(), 40);
+    }
+
+    linkForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      linkTitleError.classList.remove("visible");
+      linkUrlError.classList.remove("visible");
+
+      const groupId = linkGroupIdInput.value;
+      const linkId = linkIdInput.value;
+      const title = linkTitleInput.value.trim();
+      const rawUrl = linkUrlInput.value.trim();
+      const icon = linkIconInput.value.trim();
+      const description = linkDescInput.value.trim();
+
+      let valid = true;
+      if (!title) {
+        linkTitleError.classList.add("visible");
+        valid = false;
+      }
+
+      const normalizedUrl = validateAndNormalizeUrl(rawUrl);
+      if (!normalizedUrl) {
+        linkUrlError.classList.add("visible");
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const group = state.groups.find(g => g.id === groupId);
+      if (!group) return;
+      if (!group.links) group.links = [];
+
+      if (linkId) {
+        const existingLink = group.links.find(l => l.id === linkId);
+        if (existingLink) {
+          existingLink.title = title;
+          existingLink.url = normalizedUrl;
+          existingLink.icon = icon;
+          existingLink.description = description;
+        }
+        showToast("Link updated");
+      } else {
+        group.links.push({
+          id: generateUniqueId("link_"),
+          title,
+          url: normalizedUrl,
+          icon,
+          description
+        });
+        showToast("Link added");
+      }
+
+      linkModal.classList.remove("open");
+      renderDashboard();
+      saveToFirebase();
+    });
+
+    // Modal Close Handlers
+    document.querySelectorAll("[data-close-modal]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-close-modal");
+        document.getElementById(targetId).classList.remove("open");
+      });
+    });
+
+    document.querySelectorAll(".modal-backdrop").forEach(backdrop => {
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) {
+          backdrop.classList.remove("open");
+        }
+      });
+    });
+
+    // Profile Inputs Auto-save (debounced)
+    function scheduleProfileSave() {
+      state.title = profileTitleInput.value.trim();
+      state.description = profileDescInput.value.trim();
+      setSyncStatus("saving", "Typing...");
+      clearTimeout(profileSaveTimer);
+      profileSaveTimer = setTimeout(() => {
+        saveToFirebase();
+      }, 600);
+    }
+
+    profileTitleInput.addEventListener("input", scheduleProfileSave);
+    profileDescInput.addEventListener("input", scheduleProfileSave);
+
+    // Dashboard Buttons
+    document.getElementById("addGroupBtn").addEventListener("click", () => openGroupModal());
+    document.getElementById("retrySyncBtn").addEventListener("click", () => saveToFirebase());
+
+    document.getElementById("copyShareUrlBtn").addEventListener("click", () => {
+      copyToClipboard(getShareableUrl(collectionId), "Shareable link copied");
+    });
+
+    document.getElementById("generateShareBtn").addEventListener("click", async () => {
+      await saveToFirebase();
+      const url = getShareableUrl(collectionId);
+      shareableUrlDisplay.textContent = url;
+      copyToClipboard(url, "Shareable link updated & copied!");
+    });
+
+    function openPreview() {
+      const url = getShareableUrl(collectionId);
+      window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    document.getElementById("previewBtn").addEventListener("click", openPreview);
+    document.getElementById("navPreviewBtn").addEventListener("click", openPreview);
+
+    document.getElementById("navShareBtn").addEventListener("click", async () => {
+      const url = getShareableUrl(collectionId);
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: state.title || "OneLink Collection",
+            text: state.description || "Check out my links on OneLink",
+            url
+          });
+          return;
+        } catch {
+          // Fallback to clipboard if user cancels or share fails
+        }
+      }
+      copyToClipboard(url, "Shareable link copied");
+    });
+
+    // Initialize Public Visitor Page (?id=UNIQUE_ID)
+    async function initPublicPage(publicId) {
+      loadingText.textContent = "Loading profile...";
+      dashboardNavActions.classList.add("hidden");
+      publicNavActions.classList.remove("hidden");
+
+      const publicErrorState = document.getElementById("publicErrorState");
+      const publicContent = document.getElementById("publicContent");
+
+      try {
+        const collectionRef = ref(db, `collections/${publicId}`);
+        const snapshot = await get(collectionRef);
+
+        if (!snapshot.exists()) {
+          publicContent.classList.add("hidden");
+          publicErrorState.classList.remove("hidden");
+          return;
+        }
+
+        const data = deserializeFirebaseData(snapshot.val());
+        const displayTitle = data.title.trim();
+
+        // Set page title and top profile section using the user's exact title
+        document.title = displayTitle ? `${displayTitle} – OneLink` : "OneLink";
+        const publicTitleEl = document.getElementById("publicTitle");
+        const publicDescEl = document.getElementById("publicDesc");
+        const publicAvatarEl = document.getElementById("publicAvatar");
+
+        if (displayTitle) {
+          publicTitleEl.textContent = displayTitle;
+          publicAvatarEl.textContent = displayTitle.charAt(0).toUpperCase();
+        } else {
+          publicTitleEl.classList.add("hidden");
+          publicAvatarEl.textContent = "🔗";
+        }
+
+        if (data.description && data.description.trim()) {
+          publicDescEl.textContent = data.description.trim();
+        } else {
+          publicDescEl.classList.add("hidden");
+        }
+
+        // Render Public Groups & Links
+        const publicGroupsContainer = document.getElementById("publicGroupsContainer");
+        publicGroupsContainer.innerHTML = "";
+
+        if (data.groups.length === 0) {
+          publicGroupsContainer.innerHTML = `
+            <div class="empty-state">
+              <p>No links have been added to this page yet.</p>
+            </div>
+          `;
+        } else {
+          data.groups.forEach(group => {
+            const links = group.links || [];
+            if (links.length === 0 && !group.title) return;
+
+            const groupSection = document.createElement("div");
+            groupSection.className = "public-group";
+
+            let linksHtml = "";
+            if (links.length === 0) {
+              linksHtml = `<div class="empty-state-small">No links in this group.</div>`;
+            } else {
+              linksHtml = `<div class="public-links-stack">` + links.map(link => {
+                const iconContent = link.icon
+                  ? escapeHtml(link.icon)
+                  : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`;
+
+                return `
+                  <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="public-link-btn">
+                    <div class="public-link-left">
+                      <div class="public-link-icon">${iconContent}</div>
+                      <div class="public-link-text">
+                        <div class="public-link-title">${escapeHtml(link.title)}</div>
+                        ${link.description ? `<div class="public-link-desc">${escapeHtml(link.description)}</div>` : ""}
+                      </div>
+                    </div>
+                    <div class="public-link-arrow" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                      </svg>
+                    </div>
+                  </a>
+                `;
+              }).join("") + `</div>`;
+            }
+
+            groupSection.innerHTML = `
+              <div class="public-group-header">
+                <h2 class="public-group-title">${escapeHtml(group.title)}</h2>
+                ${group.description ? `<p class="public-group-desc">${escapeHtml(group.description)}</p>` : ""}
+              </div>
+              ${linksHtml}
+            `;
+
+            publicGroupsContainer.appendChild(groupSection);
+          });
+        }
+
+        // Public Share & Copy Buttons
+        const currentPublicUrl = window.location.href;
+        document.getElementById("publicCopyBtn").addEventListener("click", () => {
+          copyToClipboard(currentPublicUrl, "Page link copied");
+        });
+
+        document.getElementById("publicShareBtn").addEventListener("click", async () => {
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: displayTitle || "OneLink",
+                text: data.description || "Check out these links",
+                url: currentPublicUrl
+              });
+              return;
+            } catch {
+              // Fallback to copy
+            }
+          }
+          copyToClipboard(currentPublicUrl, "Page link copied");
+        });
+
+      } catch (err) {
+        console.error("Error loading public page:", err);
+        publicContent.classList.add("hidden");
+        publicErrorState.classList.remove("hidden");
+        publicErrorState.querySelector("h2").textContent = "Unable to Load Page";
+        publicErrorState.querySelector("p").textContent = err.message || "A connection error occurred while fetching data.";
+      } finally {
+        loadingView.classList.add("hidden");
+        publicView.classList.remove("hidden");
+      }
+    }
+
+    // Bootstrap Router (?id=UNIQUE_ID -> Public View, otherwise -> Dashboard View)
+    (function bootstrap() {
+      const params = new URLSearchParams(window.location.search);
+      const publicId = params.get("id");
+
+      // Ensure brand logo link navigates cleanly to dashboard root
+      const rootUrl = new URL(window.location.href);
+      rootUrl.search = "";
+      rootUrl.hash = "";
+      document.getElementById("brandLink").href = rootUrl.toString();
+      document.getElementById("publicCreateOwnBtn").href = rootUrl.toString();
+      const emptyCreateBtn = document.querySelector("#publicErrorState a");
+      if (emptyCreateBtn) emptyCreateBtn.href = rootUrl.toString();
+      const footerLink = document.querySelector(".public-footer a");
+      if (footerLink) footerLink.href = rootUrl.toString();
+
+      if (publicId && publicId.trim() !== "") {
+        initPublicPage(publicId.trim());
+      } else {
+        initDashboard();
+      }
+    })();
+  </script>
+</body>
+</html>

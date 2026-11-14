@@ -60,7 +60,7 @@
     }
 
     .navbar-inner {
-      max-width: 920px;
+      max-width: 940px;
       margin: 0 auto;
       padding: 14px 20px;
       display: flex;
@@ -115,7 +115,7 @@
 
     /* Main Layout */
     .container {
-      max-width: 920px;
+      max-width: 940px;
       width: 100%;
       margin: 0 auto;
       padding: 28px 20px 64px;
@@ -154,6 +154,12 @@
       cursor: not-allowed;
     }
 
+    .btn-sm {
+      padding: 6px 11px;
+      font-size: 0.8rem;
+      gap: 5px;
+    }
+
     .btn-primary {
       background: var(--primary);
       color: #ffffff;
@@ -183,16 +189,6 @@
 
     .btn-soft:hover:not(:disabled) {
       background: #dbeafe;
-    }
-
-    .btn-danger-ghost {
-      background: transparent;
-      color: var(--text-muted);
-    }
-
-    .btn-danger-ghost:hover:not(:disabled) {
-      background: var(--danger-light);
-      color: var(--danger);
     }
 
     .btn-icon {
@@ -276,7 +272,7 @@
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
       padding: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .profile-grid {
@@ -380,6 +376,16 @@
       gap: 12px;
     }
 
+    .share-bar-label {
+      width: 100%;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: -4px;
+    }
+
     .share-url-box {
       display: flex;
       align-items: center;
@@ -409,29 +415,30 @@
       flex-wrap: wrap;
     }
 
-    /* Groups Toolbar */
+    /* Categories Toolbar */
     .section-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 16px;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .section-title {
-      font-size: 1.125rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--text-main);
     }
 
-    /* Group Card */
-    .groups-list {
+    /* Category Card */
+    .categories-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .group-card {
+    .category-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
@@ -439,20 +446,20 @@
       transition: box-shadow var(--transition), border-color var(--transition), opacity var(--transition);
     }
 
-    .group-card:hover {
+    .category-card:hover {
       box-shadow: var(--shadow-md);
     }
 
-    .group-card.dragging {
+    .category-card.dragging {
       opacity: 0.5;
       border: 1px dashed var(--primary);
     }
 
-    .group-card.drag-over {
+    .category-card.drag-over {
       border-top: 3px solid var(--primary);
     }
 
-    .group-header {
+    .category-header {
       padding: 16px 18px;
       display: flex;
       align-items: flex-start;
@@ -461,11 +468,11 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .group-card.collapsed .group-header {
+    .category-card.collapsed .category-header {
       border-bottom: none;
     }
 
-    .group-header-left {
+    .category-header-left {
       display: flex;
       align-items: flex-start;
       gap: 10px;
@@ -487,26 +494,26 @@
       cursor: grabbing;
     }
 
-    .group-info {
+    .category-info {
       flex: 1;
       min-width: 0;
     }
 
-    .group-title-row {
+    .category-title-row {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-wrap: wrap;
     }
 
-    .group-title {
-      font-size: 1.025rem;
+    .category-title {
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text-main);
       word-break: break-word;
     }
 
-    .group-count-pill {
+    .category-count-pill {
       font-size: 0.72rem;
       font-weight: 600;
       background: var(--primary-light);
@@ -515,29 +522,84 @@
       border-radius: 999px;
     }
 
-    .group-desc {
+    .category-desc {
       font-size: 0.85rem;
       color: var(--text-muted);
       margin-top: 3px;
       word-break: break-word;
     }
 
-    .group-actions {
+    .category-actions {
       display: flex;
       align-items: center;
-      gap: 2px;
+      gap: 4px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+
+    /* Dedicated Category Share Strip */
+    .category-share-strip {
+      background: var(--primary-light);
+      border-bottom: 1px solid var(--primary-border);
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .category-card.collapsed .category-share-strip {
+      border-bottom: none;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+
+    .category-share-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .category-share-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: #ffffff;
+      border: 1px solid var(--primary-border);
+      padding: 2px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
       flex-shrink: 0;
     }
 
-    .group-body {
+    .category-share-url {
+      font-size: 0.78rem;
+      color: #1e3a8a;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .category-share-btns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .category-body {
       padding: 16px 18px;
     }
 
-    .group-card.collapsed .group-body {
+    .category-card.collapsed .category-body {
       display: none;
     }
 
-    /* Links inside Group */
+    /* Links inside Category */
     .links-list {
       display: flex;
       flex-direction: column;
@@ -667,6 +729,20 @@
       margin-bottom: 28px;
     }
 
+    .public-category-pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
     .public-avatar {
       width: 64px;
       height: 64px;
@@ -696,6 +772,12 @@
       max-width: 520px;
       margin: 8px auto 0;
       word-break: break-word;
+    }
+
+    .public-author-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 10px;
     }
 
     .public-share-row {
@@ -968,18 +1050,18 @@
       display: none !important;
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 600px) {
       .navbar-inner {
         padding: 12px 14px;
       }
       .brand-tag {
         display: none;
       }
-      .group-header {
+      .category-header {
         flex-direction: column;
         align-items: stretch;
       }
-      .group-actions {
+      .category-actions {
         justify-content: flex-end;
         border-top: 1px solid var(--border);
         padding-top: 8px;
@@ -1022,7 +1104,7 @@
             <polyline points="15 3 21 3 21 9"></polyline>
             <line x1="10" y1="14" x2="21" y2="3"></line>
           </svg>
-          Preview
+          Preview All
         </button>
         <button type="button" class="btn btn-primary" id="navShareBtn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1032,7 +1114,7 @@
             <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
             <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
           </svg>
-          Share Link
+          Share Full Page
         </button>
       </div>
 
@@ -1058,7 +1140,7 @@
     <div class="welcome-header">
       <div>
         <h1 class="welcome-title">Welcome to OneLink</h1>
-        <p class="welcome-subtitle">Organize your links into clean groups and share them with a single permanent URL.</p>
+        <p class="welcome-subtitle">Create custom categories with unlimited links. Share a single category link or your entire collection.</p>
       </div>
       <div class="sync-badge" id="syncBadge">
         <span class="sync-dot" id="syncDot"></span>
@@ -1066,24 +1148,24 @@
       </div>
     </div>
 
-    <!-- Profile Details & Shareable Link -->
+    <!-- Profile Details & Master Shareable Link -->
     <section class="card" aria-label="Profile Settings">
       <div class="profile-grid">
         <div>
           <div class="form-group">
-            <label class="form-label" for="profileTitleInput">Profile Title</label>
-            <input type="text" id="profileTitleInput" class="form-input" placeholder="e.g., Alex Morgan or My Personal Links" maxlength="100" />
+            <label class="form-label" for="profileTitleInput">Profile / Workspace Title</label>
+            <input type="text" id="profileTitleInput" class="form-input" placeholder="e.g., Alex Morgan or My Resource Hub" maxlength="100" />
           </div>
           <div class="form-group">
             <label class="form-label" for="profileDescInput">Profile Description</label>
-            <textarea id="profileDescInput" class="form-textarea" placeholder="Add a short bio, tagline, or description for your visitors..." maxlength="300"></textarea>
+            <textarea id="profileDescInput" class="form-textarea" placeholder="Add a short bio or description for your full page..." maxlength="300"></textarea>
           </div>
         </div>
 
         <div class="stats-panel">
           <div class="stat-row">
-            <span class="stat-label">Total Groups</span>
-            <span class="stat-value" id="totalGroupsCount">0</span>
+            <span class="stat-label">Total Categories</span>
+            <span class="stat-value" id="totalCategoriesCount">0</span>
           </div>
           <div class="stat-row">
             <span class="stat-label">Total Links</span>
@@ -1093,47 +1175,53 @@
       </div>
 
       <div class="share-bar">
+        <div class="share-bar-label">Full Collection URL (Shows All Categories)</div>
         <div class="share-url-box">
           <span class="share-url-text" id="shareableUrlDisplay">Generating link...</span>
-          <button type="button" class="btn btn-secondary" id="copyShareUrlBtn" style="padding: 6px 12px; font-size: 0.8rem;">Copy</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="copyShareUrlBtn">Copy</button>
         </div>
         <div class="share-actions">
-          <button type="button" class="btn btn-soft" id="generateShareBtn">Generate Shareable Link</button>
-          <button type="button" class="btn btn-secondary" id="previewBtn">Preview Page</button>
+          <button type="button" class="btn btn-soft" id="generateShareBtn">Copy Full Link</button>
+          <button type="button" class="btn btn-secondary" id="previewBtn">Preview Full Page</button>
         </div>
       </div>
     </section>
 
-    <!-- Groups Management -->
-    <section aria-label="Link Groups">
+    <!-- Categories Management -->
+    <section aria-label="Custom Categories">
       <div class="section-toolbar">
-        <h2 class="section-title">Your Link Groups</h2>
-        <button type="button" class="btn btn-primary" id="addGroupBtn">
+        <div>
+          <h2 class="section-title">Custom Categories</h2>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Each category has its own private shareable URL that displays only that category's links.</p>
+        </div>
+        <button type="button" class="btn btn-primary" id="addCategoryBtn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <line x1="5" y1="12" x2="19" y2="12"></line>
           </svg>
-          Add New Group
+          Create Custom Category
         </button>
       </div>
 
-      <div id="groupsContainer" class="groups-list"></div>
+      <div id="categoriesContainer" class="categories-list"></div>
     </section>
   </main>
 
-  <!-- Public View (Visitor Mode) -->
+  <!-- Public View (Visitor Mode: Single Category OR Full Collection) -->
   <main id="publicView" class="public-container hidden">
     <div id="publicErrorState" class="empty-state hidden">
-      <h2 style="font-size: 1.2rem; color: var(--text-main); margin-bottom: 6px;">Collection Not Found</h2>
-      <p style="margin-bottom: 18px;">This OneLink URL does not exist or has no published content yet.</p>
-      <a href="./" class="btn btn-primary">Create a New OneLink Page</a>
+      <h2 style="font-size: 1.2rem; color: var(--text-main); margin-bottom: 6px;">Page Not Found</h2>
+      <p style="margin-bottom: 18px;">This OneLink URL does not exist or the category was removed.</p>
+      <a href="./" class="btn btn-primary">Create Your Own OneLink</a>
     </div>
 
     <div id="publicContent">
       <section class="public-profile-card">
+        <div class="public-category-pill hidden" id="publicCategoryBadge">Category</div>
         <div class="public-avatar" id="publicAvatar">O</div>
         <h1 class="public-title" id="publicTitle"></h1>
         <p class="public-desc" id="publicDesc"></p>
+        <p class="public-author-note hidden" id="publicAuthorNote"></p>
         <div class="public-share-row">
           <button type="button" class="btn btn-primary" id="publicShareBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1163,34 +1251,34 @@
     </div>
   </main>
 
-  <!-- Group Modal (Add / Edit) -->
-  <div class="modal-backdrop" id="groupModal" role="dialog" aria-modal="true" aria-labelledby="groupModalTitle">
+  <!-- Category Modal (Add / Edit) -->
+  <div class="modal-backdrop" id="categoryModal" role="dialog" aria-modal="true" aria-labelledby="categoryModalTitle">
     <div class="modal">
       <div class="modal-header">
-        <h3 class="modal-title" id="groupModalTitle">Add New Group</h3>
-        <button type="button" class="btn-icon" data-close-modal="groupModal" aria-label="Close">
+        <h3 class="modal-title" id="categoryModalTitle">Create Custom Category</h3>
+        <button type="button" class="btn-icon" data-close-modal="categoryModal" aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
       </div>
-      <form id="groupForm">
+      <form id="categoryForm">
         <div class="modal-body">
-          <input type="hidden" id="groupIdInput" />
+          <input type="hidden" id="categoryIdInput" />
           <div class="form-group">
-            <label class="form-label" for="groupTitleInput">Group Title *</label>
-            <input type="text" id="groupTitleInput" class="form-input" placeholder="e.g., My Social Media" maxlength="80" required />
-            <div class="input-error" id="groupTitleError">Please enter a group title.</div>
+            <label class="form-label" for="categoryTitleInput">Category Title *</label>
+            <input type="text" id="categoryTitleInput" class="form-input" placeholder="e.g., Video Editing Pack, Social Links, Study Notes" maxlength="80" required />
+            <div class="input-error" id="categoryTitleError">Please enter a category title.</div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="groupDescInput">Group Description (Optional)</label>
-            <textarea id="groupDescInput" class="form-textarea" placeholder="e.g., Connect with me across social platforms" maxlength="200"></textarea>
+            <label class="form-label" for="categoryDescInput">Category Description (Optional)</label>
+            <textarea id="categoryDescInput" class="form-textarea" placeholder="Shown at the top when someone opens this category's link..." maxlength="240"></textarea>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-close-modal="groupModal">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="saveGroupSubmitBtn">Save Group</button>
+          <button type="button" class="btn btn-secondary" data-close-modal="categoryModal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveCategorySubmitBtn">Save Category</button>
         </div>
       </form>
     </div>
@@ -1210,25 +1298,25 @@
       </div>
       <form id="linkForm" novalidate>
         <div class="modal-body">
-          <input type="hidden" id="linkGroupIdInput" />
+          <input type="hidden" id="linkCategoryIdInput" />
           <input type="hidden" id="linkIdInput" />
           <div class="form-group">
             <label class="form-label" for="linkTitleInput">Link Title *</label>
-            <input type="text" id="linkTitleInput" class="form-input" placeholder="e.g., YouTube Channel" maxlength="80" required />
+            <input type="text" id="linkTitleInput" class="form-input" placeholder="e.g., Download Preset Pack" maxlength="80" required />
             <div class="input-error" id="linkTitleError">Please enter a link title.</div>
           </div>
           <div class="form-group">
             <label class="form-label" for="linkUrlInput">URL (HTTP or HTTPS) *</label>
-            <input type="url" id="linkUrlInput" class="form-input" placeholder="https://youtube.com/@yourhandle" required />
+            <input type="url" id="linkUrlInput" class="form-input" placeholder="https://example.com" required />
             <div class="input-error" id="linkUrlError">Please enter a valid http:// or https:// URL.</div>
           </div>
           <div class="form-group">
             <label class="form-label" for="linkIconInput">Emoji / Icon (Optional)</label>
-            <input type="text" id="linkIconInput" class="form-input" placeholder="e.g., 🎥 or 🌐 or 🚀" maxlength="8" />
+            <input type="text" id="linkIconInput" class="form-input" placeholder="e.g., 🔗 or 📁 or 🚀" maxlength="8" />
           </div>
           <div class="form-group">
             <label class="form-label" for="linkDescInput">Short Description (Optional)</label>
-            <input type="text" id="linkDescInput" class="form-input" placeholder="e.g., Weekly tutorials and product reviews" maxlength="140" />
+            <input type="text" id="linkDescInput" class="form-input" placeholder="e.g., Direct link to the resource" maxlength="140" />
           </div>
         </div>
         <div class="modal-footer">
@@ -1249,8 +1337,7 @@
       getDatabase,
       ref,
       set,
-      get,
-      update
+      get
     } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
     const firebaseConfig = {
@@ -1267,25 +1354,23 @@
     const db = getDatabase(app);
 
     const STORAGE_KEY = "onelink_collection_id";
-    const COLLAPSED_KEY = "onelink_collapsed_groups";
+    const COLLAPSED_KEY = "onelink_collapsed_categories";
 
     let collectionId = null;
     let isSaving = false;
     let pendingSave = false;
     let profileSaveTimer = null;
-    let collapsedGroups = new Set(JSON.parse(localStorage.getItem(COLLAPSED_KEY) || "[]"));
+    let collapsedCategories = new Set(JSON.parse(localStorage.getItem(COLLAPSED_KEY) || "[]"));
 
-    // Application state (normalized arrays internally for order, serialized to Firebase structure on save)
     let state = {
       title: "",
       description: "",
-      groups: [],
+      groups: [], // Each item represents a Custom Category
       updatedAt: Date.now()
     };
 
-    // Drag & Drop state
-    let draggedGroupIndex = null;
-    let draggedLinkMeta = null; // { groupIndex, linkIndex }
+    let draggedCategoryIndex = null;
+    let draggedLinkMeta = null;
 
     // DOM Elements
     const loadingView = document.getElementById("loadingView");
@@ -1302,27 +1387,35 @@
 
     const profileTitleInput = document.getElementById("profileTitleInput");
     const profileDescInput = document.getElementById("profileDescInput");
-    const totalGroupsCount = document.getElementById("totalGroupsCount");
+    const totalCategoriesCount = document.getElementById("totalCategoriesCount");
     const totalLinksCount = document.getElementById("totalLinksCount");
     const shareableUrlDisplay = document.getElementById("shareableUrlDisplay");
-    const groupsContainer = document.getElementById("groupsContainer");
+    const categoriesContainer = document.getElementById("categoriesContainer");
 
-    // Utility: Generate unique ID
+    // Generate Unique ID
     function generateUniqueId(prefix = "") {
       const randomPart = Math.random().toString(36).substring(2, 8);
       const timePart = Date.now().toString(36).slice(-4);
       return prefix ? `${prefix}${timePart}${randomPart}` : `${timePart}${randomPart}`;
     }
 
-    // Utility: Build Shareable URL
-    function getShareableUrl(id) {
+    // Build Full Collection URL
+    function getFullShareableUrl(id) {
       const url = new URL(window.location.href);
       url.search = `?id=${encodeURIComponent(id)}`;
       url.hash = "";
       return url.toString();
     }
 
-    // Utility: Escape HTML to prevent XSS
+    // Build Single Category Shareable URL (?id=COLLECTION_ID&cat=CATEGORY_ID)
+    function getCategoryShareableUrl(id, categoryId) {
+      const url = new URL(window.location.href);
+      url.search = `?id=${encodeURIComponent(id)}&cat=${encodeURIComponent(categoryId)}`;
+      url.hash = "";
+      return url.toString();
+    }
+
+    // Escape HTML
     function escapeHtml(str) {
       if (str === null || str === undefined) return "";
       return String(str)
@@ -1333,21 +1426,15 @@
         .replace(/'/g, "&#039;");
     }
 
-    // Utility: Validate HTTP/HTTPS URL
+    // Validate HTTP/HTTPS URL
     function validateAndNormalizeUrl(rawUrl) {
       const trimmed = rawUrl.trim();
-      if (!trimmed) return null;
-      if (!/^https?:\/\//i.test(trimmed)) {
-        return null;
-      }
+      if (!trimmed || !/^https?:\/\//i.test(trimmed)) return null;
       try {
         const parsed = new URL(trimmed);
-        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return null;
+        if (!parsed.hostname || (!parsed.hostname.includes(".") && parsed.hostname !== "localhost")) {
           return null;
-        }
-        if (!parsed.hostname || !parsed.hostname.includes(".")) {
-          // Allow localhost for testing if needed, otherwise require dot
-          if (parsed.hostname !== "localhost") return null;
         }
         return parsed.href;
       } catch {
@@ -1355,7 +1442,7 @@
       }
     }
 
-    // Utility: Toast Notification
+    // Toast Notification
     function showToast(message, isError = false) {
       const container = document.getElementById("toastContainer");
       const toast = document.createElement("div");
@@ -1363,9 +1450,7 @@
       toast.textContent = message;
       container.appendChild(toast);
 
-      requestAnimationFrame(() => {
-        toast.classList.add("show");
-      });
+      requestAnimationFrame(() => toast.classList.add("show"));
 
       setTimeout(() => {
         toast.classList.remove("show");
@@ -1373,7 +1458,7 @@
       }, 2800);
     }
 
-    // Utility: Copy to Clipboard
+    // Copy to Clipboard
     async function copyToClipboard(text, successMsg = "Copied to clipboard") {
       try {
         await navigator.clipboard.writeText(text);
@@ -1391,23 +1476,20 @@
       }
     }
 
-    // Sync Indicator Helper
+    // Sync Status Badge
     function setSyncStatus(status, message) {
       syncDot.className = "sync-dot";
-      if (status === "saving") {
-        syncDot.classList.add("saving");
-      } else if (status === "error") {
-        syncDot.classList.add("error");
-      }
+      if (status === "saving") syncDot.classList.add("saving");
+      else if (status === "error") syncDot.classList.add("error");
       syncStatusText.textContent = message;
     }
 
-    // Convert Internal State -> Firebase Database Structure
+    // Serialize Internal State -> Firebase
     function serializeStateForFirebase() {
       const groupsObj = {};
-      state.groups.forEach((grp, gIdx) => {
+      state.groups.forEach((cat, cIdx) => {
         const linksObj = {};
-        (grp.links || []).forEach((lnk, lIdx) => {
+        (cat.links || []).forEach((lnk, lIdx) => {
           const linkKey = lnk.id || `link_${lIdx + 1}`;
           linksObj[linkKey] = {
             title: lnk.title,
@@ -1418,11 +1500,11 @@
           if (lnk.icon) linksObj[linkKey].icon = lnk.icon;
         });
 
-        const groupKey = grp.id || `group_${gIdx + 1}`;
-        groupsObj[groupKey] = {
-          title: grp.title,
-          description: grp.description || "",
-          order: gIdx,
+        const catKey = cat.id || `cat_${cIdx + 1}`;
+        groupsObj[catKey] = {
+          title: cat.title,
+          description: cat.description || "",
+          order: cIdx,
           links: linksObj
         };
       });
@@ -1435,7 +1517,7 @@
       };
     }
 
-    // Convert Firebase Snapshot -> Internal State
+    // Deserialize Firebase -> Internal State
     function deserializeFirebaseData(data) {
       if (!data) {
         return {
@@ -1447,9 +1529,9 @@
       }
 
       const rawGroups = data.groups || {};
-      const parsedGroups = Object.entries(rawGroups)
-        .map(([gKey, gVal], idx) => {
-          const rawLinks = gVal.links || {};
+      const parsedCategories = Object.entries(rawGroups)
+        .map(([cKey, cVal], idx) => {
+          const rawLinks = cVal.links || {};
           const parsedLinks = Object.entries(rawLinks)
             .map(([lKey, lVal], lIdx) => ({
               id: lKey,
@@ -1462,10 +1544,10 @@
             .sort((a, b) => a.order - b.order);
 
           return {
-            id: gKey,
-            title: gVal.title || "Untitled Group",
-            description: gVal.description || "",
-            order: typeof gVal.order === "number" ? gVal.order : idx,
+            id: cKey,
+            title: cVal.title || "Untitled Category",
+            description: cVal.description || "",
+            order: typeof cVal.order === "number" ? cVal.order : idx,
             links: parsedLinks
           };
         })
@@ -1474,12 +1556,12 @@
       return {
         title: data.title || "",
         description: data.description || "",
-        groups: parsedGroups,
+        groups: parsedCategories,
         updatedAt: data.updatedAt || Date.now()
       };
     }
 
-    // Persist State to Firebase Realtime Database
+    // Save to Firebase Realtime Database
     async function saveToFirebase() {
       if (!collectionId) return;
 
@@ -1500,7 +1582,7 @@
       } catch (err) {
         console.error("Firebase save error:", err);
         setSyncStatus("error", "Sync failed");
-        firebaseErrorText.textContent = `Cloud save error: ${err.message || "Check your internet connection or Firebase rules."}`;
+        firebaseErrorText.textContent = `Cloud save error: ${err.message || "Check your connection or Firebase rules."}`;
         firebaseErrorBanner.classList.add("error");
       } finally {
         isSaving = false;
@@ -1511,7 +1593,7 @@
       }
     }
 
-    // Initialize Owner Dashboard
+    // Initialize Dashboard
     async function initDashboard() {
       loadingText.textContent = "Loading your OneLink workspace...";
       let storedId = localStorage.getItem(STORAGE_KEY);
@@ -1522,7 +1604,7 @@
       }
 
       collectionId = storedId;
-      shareableUrlDisplay.textContent = getShareableUrl(collectionId);
+      shareableUrlDisplay.textContent = getFullShareableUrl(collectionId);
 
       try {
         const collectionRef = ref(db, `collections/${collectionId}`);
@@ -1531,7 +1613,6 @@
         if (snapshot.exists()) {
           state = deserializeFirebaseData(snapshot.val());
         } else {
-          // Initialize a starter collection structure in Firebase so the URL works immediately
           state = {
             title: "",
             description: "",
@@ -1556,109 +1637,110 @@
       }
     }
 
-    // Render Dashboard Groups & Counters
+    // Render Dashboard Categories & Links
     function renderDashboard() {
-      const totalGroups = state.groups.length;
-      const totalLinks = state.groups.reduce((acc, grp) => acc + (grp.links ? grp.links.length : 0), 0);
+      const totalCategories = state.groups.length;
+      const totalLinks = state.groups.reduce((acc, cat) => acc + (cat.links ? cat.links.length : 0), 0);
 
-      totalGroupsCount.textContent = totalGroups;
+      totalCategoriesCount.textContent = totalCategories;
       totalLinksCount.textContent = totalLinks;
 
-      if (totalGroups === 0) {
-        groupsContainer.innerHTML = `
+      if (totalCategories === 0) {
+        categoriesContainer.innerHTML = `
           <div class="empty-state">
-            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 4px;">No link groups yet</p>
-            <p style="font-size: 0.875rem; margin-bottom: 16px;">Create your first group (e.g., Social Media, Websites, or Resources) to start adding links.</p>
-            <button type="button" class="btn btn-primary" id="emptyAddGroupBtn">+ Create First Group</button>
+            <p style="font-weight: 600; color: var(--text-main); margin-bottom: 4px;">No custom categories yet</p>
+            <p style="font-size: 0.875rem; margin-bottom: 16px;">Create a category (for example: "Social Links", "My Course Files", or "Project Resources"), add unlimited links to it, and share only that category's link.</p>
+            <button type="button" class="btn btn-primary" id="emptyAddCategoryBtn">+ Create First Category</button>
           </div>
         `;
-        document.getElementById("emptyAddGroupBtn").addEventListener("click", () => openGroupModal());
+        document.getElementById("emptyAddCategoryBtn").addEventListener("click", () => openCategoryModal());
         return;
       }
 
-      groupsContainer.innerHTML = "";
+      categoriesContainer.innerHTML = "";
 
-      state.groups.forEach((group, groupIndex) => {
-        const isCollapsed = collapsedGroups.has(group.id);
-        const linkCount = group.links ? group.links.length : 0;
+      state.groups.forEach((category, categoryIndex) => {
+        const isCollapsed = collapsedCategories.has(category.id);
+        const linkCount = category.links ? category.links.length : 0;
+        const categoryUrl = getCategoryShareableUrl(collectionId, category.id);
 
-        const groupCard = document.createElement("div");
-        groupCard.className = `group-card ${isCollapsed ? "collapsed" : ""}`;
-        groupCard.setAttribute("draggable", "true");
-        groupCard.dataset.groupIndex = groupIndex;
+        const categoryCard = document.createElement("div");
+        categoryCard.className = `category-card ${isCollapsed ? "collapsed" : ""}`;
+        categoryCard.setAttribute("draggable", "true");
+        categoryCard.dataset.categoryIndex = categoryIndex;
 
-        // Group Drag & Drop Events
-        groupCard.addEventListener("dragstart", (e) => {
-          if (e.target !== groupCard) return;
-          draggedGroupIndex = groupIndex;
-          groupCard.classList.add("dragging");
+        // Category Drag & Drop
+        categoryCard.addEventListener("dragstart", (e) => {
+          if (e.target !== categoryCard) return;
+          draggedCategoryIndex = categoryIndex;
+          categoryCard.classList.add("dragging");
           e.dataTransfer.effectAllowed = "move";
         });
 
-        groupCard.addEventListener("dragend", () => {
-          draggedGroupIndex = null;
-          groupCard.classList.remove("dragging");
-          document.querySelectorAll(".group-card").forEach(el => el.classList.remove("drag-over"));
+        categoryCard.addEventListener("dragend", () => {
+          draggedCategoryIndex = null;
+          categoryCard.classList.remove("dragging");
+          document.querySelectorAll(".category-card").forEach(el => el.classList.remove("drag-over"));
         });
 
-        groupCard.addEventListener("dragover", (e) => {
-          if (draggedGroupIndex === null || draggedGroupIndex === groupIndex) return;
+        categoryCard.addEventListener("dragover", (e) => {
+          if (draggedCategoryIndex === null || draggedCategoryIndex === categoryIndex) return;
           e.preventDefault();
-          groupCard.classList.add("drag-over");
+          categoryCard.classList.add("drag-over");
         });
 
-        groupCard.addEventListener("dragleave", () => {
-          groupCard.classList.remove("drag-over");
+        categoryCard.addEventListener("dragleave", () => {
+          categoryCard.classList.remove("drag-over");
         });
 
-        groupCard.addEventListener("drop", (e) => {
-          if (draggedGroupIndex === null || draggedGroupIndex === groupIndex) return;
+        categoryCard.addEventListener("drop", (e) => {
+          if (draggedCategoryIndex === null || draggedCategoryIndex === categoryIndex) return;
           e.preventDefault();
-          groupCard.classList.remove("drag-over");
-          const moved = state.groups.splice(draggedGroupIndex, 1)[0];
-          state.groups.splice(groupIndex, 0, moved);
-          draggedGroupIndex = null;
+          categoryCard.classList.remove("drag-over");
+          const moved = state.groups.splice(draggedCategoryIndex, 1)[0];
+          state.groups.splice(categoryIndex, 0, moved);
+          draggedCategoryIndex = null;
           renderDashboard();
           saveToFirebase();
         });
 
-        groupCard.innerHTML = `
-          <div class="group-header">
-            <div class="group-header-left">
-              <div class="drag-handle" title="Drag to reorder group" aria-label="Drag to reorder group">
+        categoryCard.innerHTML = `
+          <div class="category-header">
+            <div class="category-header-left">
+              <div class="drag-handle" title="Drag to reorder category" aria-label="Drag to reorder category">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="19" r="1"></circle>
                   <circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="19" r="1"></circle>
                 </svg>
               </div>
-              <div class="group-info">
-                <div class="group-title-row">
-                  <span class="group-title">${escapeHtml(group.title)}</span>
-                  <span class="group-count-pill">${linkCount} ${linkCount === 1 ? "link" : "links"}</span>
+              <div class="category-info">
+                <div class="category-title-row">
+                  <span class="category-title">${escapeHtml(category.title)}</span>
+                  <span class="category-count-pill">${linkCount} ${linkCount === 1 ? "link" : "links"}</span>
                 </div>
-                ${group.description ? `<p class="group-desc">${escapeHtml(group.description)}</p>` : ""}
+                ${category.description ? `<p class="category-desc">${escapeHtml(category.description)}</p>` : ""}
               </div>
             </div>
 
-            <div class="group-actions">
-              <button type="button" class="btn-icon" data-action="toggle" title="${isCollapsed ? "Expand group" : "Collapse group"}">
+            <div class="category-actions">
+              <button type="button" class="btn-icon" data-action="toggle" title="${isCollapsed ? "Expand category" : "Collapse category"}">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(${isCollapsed ? "-90deg" : "0deg"}); transition: transform 0.15s;">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
-              <button type="button" class="btn-icon" data-action="edit-group" title="Edit group">
+              <button type="button" class="btn-icon" data-action="edit-category" title="Edit category">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                   <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                 </svg>
               </button>
-              <button type="button" class="btn-icon" data-action="duplicate-group" title="Duplicate group">
+              <button type="button" class="btn-icon" data-action="duplicate-category" title="Duplicate category">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                 </svg>
               </button>
-              <button type="button" class="btn-icon danger" data-action="delete-group" title="Delete group">
+              <button type="button" class="btn-icon danger" data-action="delete-category" title="Delete category">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="3 6 5 6 21 6"></polyline>
                   <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -1667,78 +1749,127 @@
             </div>
           </div>
 
-          <div class="group-body">
-            <div class="links-list" data-links-container="${group.id}"></div>
+          <!-- Dedicated Shareable Link Strip for THIS Category Only -->
+          <div class="category-share-strip">
+            <div class="category-share-info">
+              <span class="category-share-badge">Category Link</span>
+              <span class="category-share-url" title="${escapeHtml(categoryUrl)}">${escapeHtml(categoryUrl)}</span>
+            </div>
+            <div class="category-share-btns">
+              <button type="button" class="btn btn-secondary btn-sm" data-action="copy-category-url">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                Copy Link
+              </button>
+              <button type="button" class="btn btn-primary btn-sm" data-action="share-category-url">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                Share Category
+              </button>
+              <a href="${escapeHtml(categoryUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Open this category page in a new tab">
+                Open
+              </a>
+            </div>
+          </div>
+
+          <div class="category-body">
+            <div class="links-list" data-links-container="${category.id}"></div>
             <button type="button" class="btn btn-soft" data-action="add-link" style="width: 100%;">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
-              Add Link to ${escapeHtml(group.title)}
+              Add Link to "${escapeHtml(category.title)}"
             </button>
           </div>
         `;
 
-        // Group Action Handlers
-        groupCard.querySelector('[data-action="toggle"]').addEventListener("click", () => {
-          if (collapsedGroups.has(group.id)) {
-            collapsedGroups.delete(group.id);
+        // Category Action Listeners
+        categoryCard.querySelector('[data-action="toggle"]').addEventListener("click", () => {
+          if (collapsedCategories.has(category.id)) {
+            collapsedCategories.delete(category.id);
           } else {
-            collapsedGroups.add(group.id);
+            collapsedCategories.add(category.id);
           }
-          localStorage.setItem(COLLAPSED_KEY, JSON.stringify([...collapsedGroups]));
+          localStorage.setItem(COLLAPSED_KEY, JSON.stringify([...collapsedCategories]));
           renderDashboard();
         });
 
-        groupCard.querySelector('[data-action="edit-group"]').addEventListener("click", () => {
-          openGroupModal(group);
+        categoryCard.querySelector('[data-action="copy-category-url"]').addEventListener("click", () => {
+          copyToClipboard(categoryUrl, `"${category.title}" link copied!`);
         });
 
-        groupCard.querySelector('[data-action="duplicate-group"]').addEventListener("click", () => {
-          const duplicatedLinks = (group.links || []).map((l, idx) => ({
+        categoryCard.querySelector('[data-action="share-category-url"]').addEventListener("click", async () => {
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: category.title,
+                text: category.description || `Links in ${category.title}`,
+                url: categoryUrl
+              });
+              return;
+            } catch {
+              // Fallback to clipboard
+            }
+          }
+          copyToClipboard(categoryUrl, `"${category.title}" link copied!`);
+        });
+
+        categoryCard.querySelector('[data-action="edit-category"]').addEventListener("click", () => {
+          openCategoryModal(category);
+        });
+
+        categoryCard.querySelector('[data-action="duplicate-category"]').addEventListener("click", () => {
+          const duplicatedLinks = (category.links || []).map((l, idx) => ({
             ...l,
             id: generateUniqueId(`link_${idx + 1}_`)
           }));
-          const duplicatedGroup = {
-            id: generateUniqueId("group_"),
-            title: `${group.title} (Copy)`,
-            description: group.description || "",
+          const duplicatedCategory = {
+            id: generateUniqueId("cat_"),
+            title: `${category.title} (Copy)`,
+            description: category.description || "",
             links: duplicatedLinks
           };
-          state.groups.splice(groupIndex + 1, 0, duplicatedGroup);
+          state.groups.splice(categoryIndex + 1, 0, duplicatedCategory);
           renderDashboard();
           saveToFirebase();
-          showToast("Group duplicated");
+          showToast("Category duplicated");
         });
 
-        groupCard.querySelector('[data-action="delete-group"]').addEventListener("click", () => {
-          if (confirm(`Delete "${group.title}" and all its links?`)) {
-            state.groups.splice(groupIndex, 1);
-            collapsedGroups.delete(group.id);
+        categoryCard.querySelector('[data-action="delete-category"]').addEventListener("click", () => {
+          if (confirm(`Delete category "${category.title}" and all its links?`)) {
+            state.groups.splice(categoryIndex, 1);
+            collapsedCategories.delete(category.id);
             renderDashboard();
             saveToFirebase();
-            showToast("Group deleted");
+            showToast("Category deleted");
           }
         });
 
-        groupCard.querySelector('[data-action="add-link"]').addEventListener("click", () => {
-          openLinkModal(group.id);
+        categoryCard.querySelector('[data-action="add-link"]').addEventListener("click", () => {
+          openLinkModal(category.id);
         });
 
-        // Render Links inside Group
-        const linksListEl = groupCard.querySelector(`[data-links-container="${group.id}"]`);
-        if (!group.links || group.links.length === 0) {
-          linksListEl.innerHTML = `<div class="empty-state-small">No links in this group yet. Click below to add your first URL.</div>`;
+        // Render Links inside Category
+        const linksListEl = categoryCard.querySelector(`[data-links-container="${category.id}"]`);
+        if (!category.links || category.links.length === 0) {
+          linksListEl.innerHTML = `<div class="empty-state-small">No links in this category yet. Click below to add unlimited links.</div>`;
         } else {
-          group.links.forEach((link, linkIndex) => {
+          category.links.forEach((link, linkIndex) => {
             const linkEl = document.createElement("div");
             linkEl.className = "link-item";
             linkEl.setAttribute("draggable", "true");
 
-            // Link Drag & Drop Events (within same group)
             linkEl.addEventListener("dragstart", (e) => {
               e.stopPropagation();
-              draggedLinkMeta = { groupIndex, linkIndex };
+              draggedLinkMeta = { categoryIndex, linkIndex };
               linkEl.classList.add("dragging");
               e.dataTransfer.effectAllowed = "move";
             });
@@ -1751,7 +1882,7 @@
             });
 
             linkEl.addEventListener("dragover", (e) => {
-              if (!draggedLinkMeta || draggedLinkMeta.groupIndex !== groupIndex || draggedLinkMeta.linkIndex === linkIndex) {
+              if (!draggedLinkMeta || draggedLinkMeta.categoryIndex !== categoryIndex || draggedLinkMeta.linkIndex === linkIndex) {
                 return;
               }
               e.preventDefault();
@@ -1765,15 +1896,15 @@
             });
 
             linkEl.addEventListener("drop", (e) => {
-              if (!draggedLinkMeta || draggedLinkMeta.groupIndex !== groupIndex || draggedLinkMeta.linkIndex === linkIndex) {
+              if (!draggedLinkMeta || draggedLinkMeta.categoryIndex !== categoryIndex || draggedLinkMeta.linkIndex === linkIndex) {
                 return;
               }
               e.preventDefault();
               e.stopPropagation();
               linkEl.classList.remove("drag-over");
 
-              const movedLink = state.groups[groupIndex].links.splice(draggedLinkMeta.linkIndex, 1)[0];
-              state.groups[groupIndex].links.splice(linkIndex, 0, movedLink);
+              const movedLink = state.groups[categoryIndex].links.splice(draggedLinkMeta.linkIndex, 1)[0];
+              state.groups[categoryIndex].links.splice(linkIndex, 0, movedLink);
               draggedLinkMeta = null;
               renderDashboard();
               saveToFirebase();
@@ -1825,11 +1956,11 @@
             });
 
             linkEl.querySelector('[data-link-action="edit"]').addEventListener("click", () => {
-              openLinkModal(group.id, link);
+              openLinkModal(category.id, link);
             });
 
             linkEl.querySelector('[data-link-action="delete"]').addEventListener("click", () => {
-              state.groups[groupIndex].links.splice(linkIndex, 1);
+              state.groups[categoryIndex].links.splice(linkIndex, 1);
               renderDashboard();
               saveToFirebase();
               showToast("Link deleted");
@@ -1839,65 +1970,65 @@
           });
         }
 
-        groupsContainer.appendChild(groupCard);
+        categoriesContainer.appendChild(categoryCard);
       });
     }
 
-    // Group Modal Logic
-    const groupModal = document.getElementById("groupModal");
-    const groupForm = document.getElementById("groupForm");
-    const groupIdInput = document.getElementById("groupIdInput");
-    const groupTitleInput = document.getElementById("groupTitleInput");
-    const groupDescInput = document.getElementById("groupDescInput");
-    const groupTitleError = document.getElementById("groupTitleError");
+    // Category Modal Logic
+    const categoryModal = document.getElementById("categoryModal");
+    const categoryForm = document.getElementById("categoryForm");
+    const categoryIdInput = document.getElementById("categoryIdInput");
+    const categoryTitleInput = document.getElementById("categoryTitleInput");
+    const categoryDescInput = document.getElementById("categoryDescInput");
+    const categoryTitleError = document.getElementById("categoryTitleError");
 
-    function openGroupModal(group = null) {
-      groupTitleError.classList.remove("visible");
-      if (group) {
-        document.getElementById("groupModalTitle").textContent = "Edit Group";
-        groupIdInput.value = group.id;
-        groupTitleInput.value = group.title;
-        groupDescInput.value = group.description || "";
+    function openCategoryModal(category = null) {
+      categoryTitleError.classList.remove("visible");
+      if (category) {
+        document.getElementById("categoryModalTitle").textContent = "Edit Category";
+        categoryIdInput.value = category.id;
+        categoryTitleInput.value = category.title;
+        categoryDescInput.value = category.description || "";
       } else {
-        document.getElementById("groupModalTitle").textContent = "Add New Group";
-        groupIdInput.value = "";
-        groupTitleInput.value = "";
-        groupDescInput.value = "";
+        document.getElementById("categoryModalTitle").textContent = "Create Custom Category";
+        categoryIdInput.value = "";
+        categoryTitleInput.value = "";
+        categoryDescInput.value = "";
       }
-      groupModal.classList.add("open");
-      setTimeout(() => groupTitleInput.focus(), 40);
+      categoryModal.classList.add("open");
+      setTimeout(() => categoryTitleInput.focus(), 40);
     }
 
-    groupForm.addEventListener("submit", (e) => {
+    categoryForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const title = groupTitleInput.value.trim();
-      const description = groupDescInput.value.trim();
+      const title = categoryTitleInput.value.trim();
+      const description = categoryDescInput.value.trim();
 
       if (!title) {
-        groupTitleError.classList.add("visible");
-        groupTitleInput.focus();
+        categoryTitleError.classList.add("visible");
+        categoryTitleInput.focus();
         return;
       }
 
-      const existingId = groupIdInput.value;
+      const existingId = categoryIdInput.value;
       if (existingId) {
-        const target = state.groups.find(g => g.id === existingId);
+        const target = state.groups.find(c => c.id === existingId);
         if (target) {
           target.title = title;
           target.description = description;
         }
-        showToast("Group updated");
+        showToast("Category updated");
       } else {
         state.groups.push({
-          id: generateUniqueId("group_"),
+          id: generateUniqueId("cat_"),
           title,
           description,
           links: []
         });
-        showToast("Group added");
+        showToast("Custom category created");
       }
 
-      groupModal.classList.remove("open");
+      categoryModal.classList.remove("open");
       renderDashboard();
       saveToFirebase();
     });
@@ -1905,7 +2036,7 @@
     // Link Modal Logic
     const linkModal = document.getElementById("linkModal");
     const linkForm = document.getElementById("linkForm");
-    const linkGroupIdInput = document.getElementById("linkGroupIdInput");
+    const linkCategoryIdInput = document.getElementById("linkCategoryIdInput");
     const linkIdInput = document.getElementById("linkIdInput");
     const linkTitleInput = document.getElementById("linkTitleInput");
     const linkUrlInput = document.getElementById("linkUrlInput");
@@ -1914,10 +2045,10 @@
     const linkTitleError = document.getElementById("linkTitleError");
     const linkUrlError = document.getElementById("linkUrlError");
 
-    function openLinkModal(groupId, link = null) {
+    function openLinkModal(categoryId, link = null) {
       linkTitleError.classList.remove("visible");
       linkUrlError.classList.remove("visible");
-      linkGroupIdInput.value = groupId;
+      linkCategoryIdInput.value = categoryId;
 
       if (link) {
         document.getElementById("linkModalTitle").textContent = "Edit Link";
@@ -1944,7 +2075,7 @@
       linkTitleError.classList.remove("visible");
       linkUrlError.classList.remove("visible");
 
-      const groupId = linkGroupIdInput.value;
+      const categoryId = linkCategoryIdInput.value;
       const linkId = linkIdInput.value;
       const title = linkTitleInput.value.trim();
       const rawUrl = linkUrlInput.value.trim();
@@ -1965,12 +2096,12 @@
 
       if (!valid) return;
 
-      const group = state.groups.find(g => g.id === groupId);
-      if (!group) return;
-      if (!group.links) group.links = [];
+      const category = state.groups.find(c => c.id === categoryId);
+      if (!category) return;
+      if (!category.links) category.links = [];
 
       if (linkId) {
-        const existingLink = group.links.find(l => l.id === linkId);
+        const existingLink = category.links.find(l => l.id === linkId);
         if (existingLink) {
           existingLink.title = title;
           existingLink.url = normalizedUrl;
@@ -1979,7 +2110,7 @@
         }
         showToast("Link updated");
       } else {
-        group.links.push({
+        category.links.push({
           id: generateUniqueId("link_"),
           title,
           url: normalizedUrl,
@@ -2010,7 +2141,7 @@
       });
     });
 
-    // Profile Inputs Auto-save (debounced)
+    // Profile Inputs Auto-save
     function scheduleProfileSave() {
       state.title = profileTitleInput.value.trim();
       state.description = profileDescInput.value.trim();
@@ -2025,30 +2156,30 @@
     profileDescInput.addEventListener("input", scheduleProfileSave);
 
     // Dashboard Buttons
-    document.getElementById("addGroupBtn").addEventListener("click", () => openGroupModal());
+    document.getElementById("addCategoryBtn").addEventListener("click", () => openCategoryModal());
     document.getElementById("retrySyncBtn").addEventListener("click", () => saveToFirebase());
 
     document.getElementById("copyShareUrlBtn").addEventListener("click", () => {
-      copyToClipboard(getShareableUrl(collectionId), "Shareable link copied");
+      copyToClipboard(getFullShareableUrl(collectionId), "Full page link copied");
     });
 
     document.getElementById("generateShareBtn").addEventListener("click", async () => {
       await saveToFirebase();
-      const url = getShareableUrl(collectionId);
+      const url = getFullShareableUrl(collectionId);
       shareableUrlDisplay.textContent = url;
-      copyToClipboard(url, "Shareable link updated & copied!");
+      copyToClipboard(url, "Full collection link copied!");
     });
 
-    function openPreview() {
-      const url = getShareableUrl(collectionId);
+    function openFullPreview() {
+      const url = getFullShareableUrl(collectionId);
       window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    document.getElementById("previewBtn").addEventListener("click", openPreview);
-    document.getElementById("navPreviewBtn").addEventListener("click", openPreview);
+    document.getElementById("previewBtn").addEventListener("click", openFullPreview);
+    document.getElementById("navPreviewBtn").addEventListener("click", openFullPreview);
 
     document.getElementById("navShareBtn").addEventListener("click", async () => {
-      const url = getShareableUrl(collectionId);
+      const url = getFullShareableUrl(collectionId);
       if (navigator.share) {
         try {
           await navigator.share({
@@ -2058,15 +2189,45 @@
           });
           return;
         } catch {
-          // Fallback to clipboard if user cancels or share fails
+          // Fallback
         }
       }
-      copyToClipboard(url, "Shareable link copied");
+      copyToClipboard(url, "Full page link copied");
     });
 
-    // Initialize Public Visitor Page (?id=UNIQUE_ID)
-    async function initPublicPage(publicId) {
-      loadingText.textContent = "Loading profile...";
+    // Helper to build public link cards HTML
+    function buildPublicLinksHtml(links) {
+      if (!links || links.length === 0) {
+        return `<div class="empty-state-small">No links have been added to this category yet.</div>`;
+      }
+      return `<div class="public-links-stack">` + links.map(link => {
+        const iconContent = link.icon
+          ? escapeHtml(link.icon)
+          : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`;
+
+        return `
+          <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="public-link-btn">
+            <div class="public-link-left">
+              <div class="public-link-icon">${iconContent}</div>
+              <div class="public-link-text">
+                <div class="public-link-title">${escapeHtml(link.title)}</div>
+                ${link.description ? `<div class="public-link-desc">${escapeHtml(link.description)}</div>` : ""}
+              </div>
+            </div>
+            <div class="public-link-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </a>
+        `;
+      }).join("") + `</div>`;
+    }
+
+    // Initialize Public Visitor Page (?id=COLLECTION_ID or ?id=COLLECTION_ID&cat=CATEGORY_ID)
+    async function initPublicPage(publicId, categoryId = null) {
+      loadingText.textContent = "Loading links...";
       dashboardNavActions.classList.add("hidden");
       publicNavActions.classList.remove("hidden");
 
@@ -2084,13 +2245,71 @@
         }
 
         const data = deserializeFirebaseData(snapshot.val());
-        const displayTitle = data.title.trim();
-
-        // Set page title and top profile section using the user's exact title
-        document.title = displayTitle ? `${displayTitle} – OneLink` : "OneLink";
         const publicTitleEl = document.getElementById("publicTitle");
         const publicDescEl = document.getElementById("publicDesc");
         const publicAvatarEl = document.getElementById("publicAvatar");
+        const publicCategoryBadge = document.getElementById("publicCategoryBadge");
+        const publicAuthorNote = document.getElementById("publicAuthorNote");
+        const publicGroupsContainer = document.getElementById("publicGroupsContainer");
+
+        // CASE 1: Visitor opened a SINGLE CATEGORY link (?id=...&cat=...)
+        if (categoryId) {
+          const targetCategory = data.groups.find(c => c.id === categoryId);
+          if (!targetCategory) {
+            publicContent.classList.add("hidden");
+            publicErrorState.classList.remove("hidden");
+            publicErrorState.querySelector("h2").textContent = "Category Not Found";
+            publicErrorState.querySelector("p").textContent = "This category link does not exist or may have been deleted by its creator.";
+            return;
+          }
+
+          const catTitle = targetCategory.title.trim();
+          document.title = catTitle ? `${catTitle} – OneLink` : "OneLink";
+
+          publicCategoryBadge.textContent = "Category";
+          publicCategoryBadge.classList.remove("hidden");
+
+          publicTitleEl.textContent = catTitle;
+          publicAvatarEl.textContent = catTitle ? catTitle.charAt(0).toUpperCase() : "🔗";
+
+          if (targetCategory.description && targetCategory.description.trim()) {
+            publicDescEl.textContent = targetCategory.description.trim();
+          } else {
+            publicDescEl.classList.add("hidden");
+          }
+
+          if (data.title && data.title.trim()) {
+            publicAuthorNote.textContent = `Curated by ${data.title.trim()}`;
+            publicAuthorNote.classList.remove("hidden");
+          }
+
+          // Display ONLY this category's links (no other categories exposed)
+          publicGroupsContainer.innerHTML = buildPublicLinksHtml(targetCategory.links || []);
+
+          const currentUrl = window.location.href;
+          document.getElementById("publicCopyBtn").addEventListener("click", () => {
+            copyToClipboard(currentUrl, "Category link copied");
+          });
+          document.getElementById("publicShareBtn").addEventListener("click", async () => {
+            if (navigator.share) {
+              try {
+                await navigator.share({
+                  title: catTitle,
+                  text: targetCategory.description || `Check out ${catTitle}`,
+                  url: currentUrl
+                });
+                return;
+              } catch {}
+            }
+            copyToClipboard(currentUrl, "Category link copied");
+          });
+
+          return;
+        }
+
+        // CASE 2: Visitor opened the FULL COLLECTION link (?id=...)
+        const displayTitle = data.title.trim();
+        document.title = displayTitle ? `${displayTitle} – OneLink` : "OneLink";
 
         if (displayTitle) {
           publicTitleEl.textContent = displayTitle;
@@ -2106,66 +2325,32 @@
           publicDescEl.classList.add("hidden");
         }
 
-        // Render Public Groups & Links
-        const publicGroupsContainer = document.getElementById("publicGroupsContainer");
         publicGroupsContainer.innerHTML = "";
 
         if (data.groups.length === 0) {
           publicGroupsContainer.innerHTML = `
             <div class="empty-state">
-              <p>No links have been added to this page yet.</p>
+              <p>No categories or links have been published yet.</p>
             </div>
           `;
         } else {
-          data.groups.forEach(group => {
-            const links = group.links || [];
-            if (links.length === 0 && !group.title) return;
+          data.groups.forEach(category => {
+            const links = category.links || [];
+            if (links.length === 0 && !category.title) return;
 
             const groupSection = document.createElement("div");
             groupSection.className = "public-group";
-
-            let linksHtml = "";
-            if (links.length === 0) {
-              linksHtml = `<div class="empty-state-small">No links in this group.</div>`;
-            } else {
-              linksHtml = `<div class="public-links-stack">` + links.map(link => {
-                const iconContent = link.icon
-                  ? escapeHtml(link.icon)
-                  : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`;
-
-                return `
-                  <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="public-link-btn">
-                    <div class="public-link-left">
-                      <div class="public-link-icon">${iconContent}</div>
-                      <div class="public-link-text">
-                        <div class="public-link-title">${escapeHtml(link.title)}</div>
-                        ${link.description ? `<div class="public-link-desc">${escapeHtml(link.description)}</div>` : ""}
-                      </div>
-                    </div>
-                    <div class="public-link-arrow" aria-hidden="true">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                      </svg>
-                    </div>
-                  </a>
-                `;
-              }).join("") + `</div>`;
-            }
-
             groupSection.innerHTML = `
               <div class="public-group-header">
-                <h2 class="public-group-title">${escapeHtml(group.title)}</h2>
-                ${group.description ? `<p class="public-group-desc">${escapeHtml(group.description)}</p>` : ""}
+                <h2 class="public-group-title">${escapeHtml(category.title)}</h2>
+                ${category.description ? `<p class="public-group-desc">${escapeHtml(category.description)}</p>` : ""}
               </div>
-              ${linksHtml}
+              ${buildPublicLinksHtml(links)}
             `;
-
             publicGroupsContainer.appendChild(groupSection);
           });
         }
 
-        // Public Share & Copy Buttons
         const currentPublicUrl = window.location.href;
         document.getElementById("publicCopyBtn").addEventListener("click", () => {
           copyToClipboard(currentPublicUrl, "Page link copied");
@@ -2180,9 +2365,7 @@
                 url: currentPublicUrl
               });
               return;
-            } catch {
-              // Fallback to copy
-            }
+            } catch {}
           }
           copyToClipboard(currentPublicUrl, "Page link copied");
         });
@@ -2199,12 +2382,12 @@
       }
     }
 
-    // Bootstrap Router (?id=UNIQUE_ID -> Public View, otherwise -> Dashboard View)
+    // Bootstrap Router
     (function bootstrap() {
       const params = new URLSearchParams(window.location.search);
       const publicId = params.get("id");
+      const categoryId = params.get("cat");
 
-      // Ensure brand logo link navigates cleanly to dashboard root
       const rootUrl = new URL(window.location.href);
       rootUrl.search = "";
       rootUrl.hash = "";
@@ -2216,7 +2399,7 @@
       if (footerLink) footerLink.href = rootUrl.toString();
 
       if (publicId && publicId.trim() !== "") {
-        initPublicPage(publicId.trim());
+        initPublicPage(publicId.trim(), categoryId ? categoryId.trim() : null);
       } else {
         initDashboard();
       }
